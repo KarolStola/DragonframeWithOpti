@@ -1,9 +1,13 @@
+#include "Arduino.h"
+
 int LedPin = 2;
+int MotorDriverActivationPin = 4;
 int MotorStepPin = 16;
 int MotorDirectionPin = 17;
-int MotorDriverActivationPin = 4;
-int RightBorderSwitch = 33;
-int LeftBorderSwitch = 32;
+int RightBorderSwitchPin = 33;
+int LeftBorderSwitchPin = 32;
+int StepsPerRevolution = 256;
+const int REACHED_BORDER_THRESHOLD = 5;
 
 void setup()
 {
@@ -12,35 +16,24 @@ void setup()
   pinMode(MotorDriverActivationPin, OUTPUT);
   pinMode(MotorDirectionPin, OUTPUT);
   pinMode(MotorStepPin, OUTPUT);
-  pinMode(RightBorderSwitch, INPUT);
-  pinMode(LeftBorderSwitch, INPUT);
+  pinMode(RightBorderSwitchPin, INPUT);
+  pinMode(LeftBorderSwitchPin, INPUT);
   //digitalWrite(MotorDriverActivationPin, HIGH);
 }
 
 void loop()
 {
-  if(analogRead(RightBorderSwitch) == 0.f)
-  {
-    digitalWrite(LedPin, HIGH);
-    //Serial.println("pressed");
-  }
-  else
-  {
-    digitalWrite(LedPin, LOW);
-  }
-  //Serial.println(analogRead(LeftBorderSwitch));
-  //delay(500);
-  
-  /*rightBorderReached = digitalRead(RightBorderSwitch);
-  if(rightBorderReached != 0 || test == 1)
-  {
-    test = 1;
-    digitalWrite(LedPin, HIGH);
-  }*/
-  
-  /*digitalWrite(LedPin, HIGH);
-  delay(400);
-  digitalWrite(LedPin, LOW);
-  delay(400);*/
-  
+  digitalWrite(MotorDriverActivationPin, HIGH);
+  digitalWrite(MotorDirectionPin, HIGH);
+  digitalWrite(MotorStepPin, HIGH);
+}
+
+bool RightBorderReached()
+{
+  return analogRead(RightBorderSwitchPin) < REACHED_BORDER_THRESHOLD;
+}
+
+bool LeftBorderReached()
+{
+  return analogRead(LeftBorderSwitchPin) < REACHED_BORDER_THRESHOLD;
 }
