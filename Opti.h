@@ -1,3 +1,6 @@
+#ifndef OPTI_H
+#define OPTI_H
+
 class Opti
 {
 public:
@@ -33,3 +36,5 @@ private:
 	bool RightBorderReached();
 	bool LeftBorderReached();
 };
+
+#endif
