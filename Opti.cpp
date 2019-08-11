@@ -1,53 +1,39 @@
 #include "Arduino.h"
 #include "Opti.h"
 
-bool Opti::IsInitialized = false;
-
-Opti::Opti()
-{
-	EnsureInitialization();
-}
-
-Opti::~Opti()
-{
-	Cleanup();
-}
-
-void Opti::EnsureInitialization()
-{
-	if (!IsInitialized)
-	{
-		Initialize();
-	}
-}
-
 void Opti::Initialize()
 {
-	SetupPins();
-	IsInitialized = true;
+	InitializeLed();
+	InitializeStepper();
 }
 
-void Opti::SetupPins()
+void Opti::InitializeLed()
 {
 	pinMode(GetLedPin(), OUTPUT);
+	DeactivateLed();
+}
+
+void Opti::InitializeStepper()
+{
+	stepper = CreateStepper();
 }
 
 void Opti::Cleanup()
 {
-	TurnLedOff();
+	DeactivateLed();
 }
 
-void Opti::TurnLedOn()
+void Opti::ActivateLed()
 {
-	SetLedOn(true);
+	SetLedActive(true);
 }
 
-void Opti::TurnLedOff()
+void Opti::DeactivateLed()
 {
-	SetLedOn(false);
+	SetLedActive(false);
 }
 
-void Opti::SetLedOn(bool Value)
+void Opti::SetLedActive(bool Value)
 {
 	digitalWrite(GetLedPin(), Value ? HIGH : LOW);
 }
@@ -65,4 +51,9 @@ bool Opti::LeftBorderReached()
 bool Opti::IsBumped(int BumperPin)
 {
 	return analogRead(BumperPin) < GetBumpValueThreshold();
+}
+
+Opti::~Opti()
+{
+	Cleanup();
 }
