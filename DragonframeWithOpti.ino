@@ -1,6 +1,7 @@
 #define EN_PIN 4
 #define STEP_PIN 16
-#include "Opti200.h"
+#include <Arduino.h>
+#include <Opti200.h>
 
 Opti200 opti;
 
