@@ -3,32 +3,32 @@
 #include <MemberBluetoothMessageHandler.h>
 #include "DragonframeOptiWrapper.h"
 
-DragonframeOptiWrapper::DragonframeOptiWrapper(Opti * opti)
+DragonframeOptiWrapper::DragonframeOptiWrapper(Opti & opti)
     : opti(opti)
 {
 }
 
-int DragonframeOptiWrapper::GetMajorVersion()
+const char * DragonframeOptiWrapper::GetMajorVersion()
 {
     return majorVersion;
 }
 
-const String & DragonframeOptiWrapper::GetFullVersion()
+const char * DragonframeOptiWrapper::GetFullVersion()
 {
     return fullVersion;
 }
 
-int DragonframeOptiWrapper::GetNumberOfAxes()
+const char * DragonframeOptiWrapper::GetNumberOfAxes()
 {
     return numberOfAxes;
 }
 
 void DragonframeOptiWrapper::SendMessage(const String & message)
 {
-    opti->SendBluetoothMessage(message);
+    opti.SendBluetoothMessage(message);
 }
 
-void DragonframeOptiWrapper::BindAsMessageHandler(class DragonframeMotionController * motionController)
+void DragonframeOptiWrapper::BindAsMessageHandler(class DragonframeMotionController & motionController)
 {
-    opti->AddBluetoothMessageHandler(new MemberBluetoothMessageHandler<DragonframeMotionController>(motionController, &DragonframeMotionController::HandleMessage));
+    opti.AddBluetoothMessageHandler(new MemberBluetoothMessageHandler<DragonframeMotionController>(motionController, &DragonframeMotionController::HandleMessage));
 }
