@@ -10,7 +10,7 @@ DragonframeOptiWrapper::DragonframeOptiWrapper(Opti & opti)
 
 void DragonframeOptiWrapper::BindAsMessageHandler(class DragonframeMotionController & motionController)
 {
-    opti.AddBluetoothMessageHandler(new MemberBluetoothMessageHandler<DragonframeMotionController>(motionController, &DragonframeMotionController::HandleMessage));
+    opti.AddBluetoothMessageHandler(new MemberBluetoothMessageHandler<DragonframeMotionController>(motionController, &DragonframeMotionController::ParseInput));
 }
 
 int DragonframeOptiWrapper::GetProtocolMajorVersion()
