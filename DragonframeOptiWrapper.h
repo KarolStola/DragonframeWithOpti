@@ -14,7 +14,7 @@ public:
     virtual int GetProtocolMinorVersion() override;
     virtual int GetProtocolFixVersion() override;
     virtual int GetNumberOfAxes() override;
-    virtual int GetCurrentMotorPositionInSteps(int motorIndex) override;
+    virtual int GetMotorCurrentPositionInSteps(int motorIndex) override;
     virtual bool GetIsMotorMoving(int motorIndex) override;
 
     virtual void MoveMotorTo(int motorIndex, int stepPosition) override;

@@ -6,14 +6,14 @@
 #include <DragonframeMotionController.h>
 #include "DragonframeOptiWrapper.h"
 
-Opti200 opti;
-DragonframeMotionController dragonframeMotionController;
+Opti200 opti(Serial1);
+DragonframeOptiWrapper dragonframeOptiWrapper(opti);
+DragonframeMotionController dragonframeMotionController(dragonframeOptiWrapper);
 
 void setup()
 {
 	Serial.begin(9600);
-	opti.Initialize(&Serial1);
-	dragonframeMotionController.Initialize(new DragonframeOptiWrapper(opti));
+	opti.Initialize();
 }
 
 void loop()

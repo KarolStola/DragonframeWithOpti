@@ -39,7 +39,7 @@ bool DragonframeOptiWrapper::GetIsMotorMoving(int motorIndex)
     return false;
 }
 
-int DragonframeOptiWrapper::GetCurrentMotorPositionInSteps(int motorIndex)
+int DragonframeOptiWrapper::GetMotorCurrentPositionInSteps(int motorIndex)
 {
     //TODO
     return 0;
