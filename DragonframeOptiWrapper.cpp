@@ -60,12 +60,12 @@ void DragonframeOptiWrapper::InchMotorTo(int motorIndex, int stepPosition)
 
 void DragonframeOptiWrapper::StopMotor(int motorIndex)
 {
-    //TODO
+    opti.StopMoving(motorIndex);
 }
 
 void DragonframeOptiWrapper::StopAllMotors()
 {
-    //TODO
+    opti.StopMoving();
 }
 
 void DragonframeOptiWrapper::SetJogSpeedForMotor(int motorIndex, int stepsPerSecond)
@@ -75,12 +75,12 @@ void DragonframeOptiWrapper::SetJogSpeedForMotor(int motorIndex, int stepsPerSec
 
 void DragonframeOptiWrapper::ZeroMotorPosition(int motorIndex)
 {
-    //TODO
+    opti.ResetCurrentStep(motorIndex);
 }
 
 void DragonframeOptiWrapper::SetMotorPosition(int motorIndex, int motorPosition)
 {
-    //TODO
+    opti.SetCurrentStep(motorIndex, motorPosition);
 }
 
 void DragonframeOptiWrapper::SendMessage(const String & message)
