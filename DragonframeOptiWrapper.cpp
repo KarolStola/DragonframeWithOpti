@@ -35,14 +35,12 @@ int DragonframeOptiWrapper::GetNumberOfAxes()
 
 bool DragonframeOptiWrapper::GetIsMotorMoving(int motorIndex)
 {
-    //TODO
-    return false;
+    return opti.IsMoving();
 }
 
-int DragonframeOptiWrapper::GetMotorCurrentPositionInSteps(int motorIndex)
+int DragonframeOptiWrapper::GetCurrentStep(int motorIndex)
 {
-    //TODO
-    return 0;
+    return opti.GetCurrentStep(motorIndex);
 }
 
 void DragonframeOptiWrapper::MoveMotorTo(int motorIndex, int stepPosition)
