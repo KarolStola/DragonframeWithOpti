@@ -49,20 +49,20 @@ void DragonframeOptiWrapper::MoveMotorTo(int motorIndex, int stepPosition)
 {
     SetIsJogging(motorIndex, false);
     SetStepsPerSecond(motorIndex, standardSpeed);
-    //TODO
+    MoveTo(motorIndex, stepPosition);
 }
 
 void DragonframeOptiWrapper::JogMotorTo(int motorIndex, int stepPosition)
 {
     SetIsJogging(motorIndex, true);
-    //TODO
+    MoveTo(motorIndex, stepPosition);
 }
 
 void DragonframeOptiWrapper::InchMotorTo(int motorIndex, int stepPosition)
 {
     SetIsJogging(motorIndex, false);
     SetStepsPerSecond(motorIndex, inchingSpeed);
-    //TODO
+    MoveTo(motorIndex, stepPosition);
 }
 
 void DragonframeOptiWrapper::StopMotor(int motorIndex)
@@ -128,5 +128,11 @@ int DragonframeOptiWrapper::GetJogSpeed(int motorIndex)
 {
     return jogSpeeds[ToOptiIndex(motorIndex)];
 }
+
+void DragonframeOptiWrapper::MoveTo(int motorIndex, long stepPosition)
+{
+    opti.MoveTo(ToOptiIndex(motorIndex), stepPosition);
+}
+
 
 

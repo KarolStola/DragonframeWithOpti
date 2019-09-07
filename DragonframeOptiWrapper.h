@@ -34,6 +34,7 @@ private:
     void SetStepsPerSecond(int motorIndex, int stepsPerSecond);
     int ToOptiIndex(int dragondrameIndex);
     int GetJogSpeed(int motorIndex);
+    void MoveTo(int motorIndex, long stepPosition);
 
     class Opti & opti;
     const int numberOfAxes = 1;
