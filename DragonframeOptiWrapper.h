@@ -25,16 +25,26 @@ public:
     virtual void SetJogSpeedForMotor(int motorIndex, int stepsPerSecond) override;
     virtual void ZeroMotorPosition(int motorIndex) override;
     virtual void SetMotorPosition(int motorIndex, int motorPosition) override;
-
     virtual void SendMessage(const String & message) override;
 
-private:
-    class Opti & opti;
 
+private:
+    void SetIsJogging(int motorIndex, bool value);
+    bool IsJogging(int motorIndex);
+    void SetStepsPerSecond(int motorIndex, int stepsPerSecond);
+    int ToOptiIndex(int dragondrameIndex);
+    int GetJogSpeed(int motorIndex);
+
+    class Opti & opti;
     const int numberOfAxes = 1;
     const int majorVersion = 1;
     const int minorVersion = 3;
     const int fixVersion = 0;
+    const int inchingSpeed = 10;
+    const int standardSpeed = 30;
+
+    std::vector<int> jogSpeeds;
+    std::vector<bool> jogStatuses;
 };
 
 #endif

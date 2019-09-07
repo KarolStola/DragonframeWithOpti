@@ -6,6 +6,8 @@
 DragonframeOptiWrapper::DragonframeOptiWrapper(Opti & opti)
     : opti(opti)
 {
+    jogSpeeds.resize(GetNumberOfAxes(), standardSpeed);
+    jogStatuses.resize(GetNumberOfAxes(), false);
 }
 
 void DragonframeOptiWrapper::BindAsMessageHandler(class DragonframeMotionController & motionController)
@@ -40,27 +42,32 @@ bool DragonframeOptiWrapper::GetIsMotorMoving(int motorIndex)
 
 int DragonframeOptiWrapper::GetCurrentStep(int motorIndex)
 {
-    return opti.GetCurrentStep(motorIndex);
+    return opti.GetCurrentStep(ToOptiIndex(motorIndex));
 }
 
 void DragonframeOptiWrapper::MoveMotorTo(int motorIndex, int stepPosition)
 {
+    SetIsJogging(motorIndex, false);
+    SetStepsPerSecond(motorIndex, standardSpeed);
     //TODO
 }
 
 void DragonframeOptiWrapper::JogMotorTo(int motorIndex, int stepPosition)
 {
+    SetIsJogging(motorIndex, true);
     //TODO
 }
 
 void DragonframeOptiWrapper::InchMotorTo(int motorIndex, int stepPosition)
 {
+    SetIsJogging(motorIndex, false);
+    SetStepsPerSecond(motorIndex, inchingSpeed);
     //TODO
 }
 
 void DragonframeOptiWrapper::StopMotor(int motorIndex)
 {
-    opti.StopMoving(motorIndex);
+    opti.StopMoving(ToOptiIndex(motorIndex));
 }
 
 void DragonframeOptiWrapper::StopAllMotors()
@@ -70,22 +77,56 @@ void DragonframeOptiWrapper::StopAllMotors()
 
 void DragonframeOptiWrapper::SetJogSpeedForMotor(int motorIndex, int stepsPerSecond)
 {
-    //TODO
+    jogSpeeds[ToOptiIndex(motorIndex)] = stepsPerSecond;
+
+    if(IsJogging(motorIndex))
+    {
+        SetStepsPerSecond(motorIndex, stepsPerSecond);
+    }
 }
 
 void DragonframeOptiWrapper::ZeroMotorPosition(int motorIndex)
 {
-    opti.ResetCurrentStep(motorIndex);
+    opti.ResetCurrentStep(ToOptiIndex(motorIndex));
 }
 
 void DragonframeOptiWrapper::SetMotorPosition(int motorIndex, int motorPosition)
 {
-    opti.SetCurrentStep(motorIndex, motorPosition);
+    opti.SetCurrentStep(ToOptiIndex(motorIndex), motorPosition);
 }
 
 void DragonframeOptiWrapper::SendMessage(const String & message)
 {
     opti.SendBluetoothMessage(message);
+}
+
+void DragonframeOptiWrapper::SetIsJogging(int motorIndex, bool value)
+{
+    jogStatuses[ToOptiIndex(motorIndex)] = value;
+    if(value)
+    {
+        SetStepsPerSecond(motorIndex, GetJogSpeed(motorIndex));
+    }
+}
+
+bool DragonframeOptiWrapper::IsJogging(int motorIndex)
+{
+    return jogStatuses[ToOptiIndex(motorIndex)];
+}
+
+int DragonframeOptiWrapper::ToOptiIndex(int dragondrameIndex)
+{
+    return dragondrameIndex - 1;
+}
+
+void DragonframeOptiWrapper::SetStepsPerSecond(int motorIndex, int stepsPerSecond)
+{
+    opti.SetStepsPerSecond(ToOptiIndex(motorIndex), stepsPerSecond);
+}
+
+int DragonframeOptiWrapper::GetJogSpeed(int motorIndex)
+{
+    return jogSpeeds[ToOptiIndex(motorIndex)];
 }
 
 
