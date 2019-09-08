@@ -21,16 +21,3 @@ void loop()
 	opti.Update();
 }
 
-void DebugStepperDirectionChange()
-{
-	if(opti.LeftBorderReached())
-	{
-		opti.SetMovementDirection(MovementDirection::Left);
-	}
-	else if(opti.RightBorderReached())
-	{
-		opti.SetMovementDirection(MovementDirection::Right);
-	}
-}
-
-

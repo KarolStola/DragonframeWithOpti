@@ -32,12 +32,12 @@ int DragonframeOptiWrapper::GetProtocolFixVersion()
 
 int DragonframeOptiWrapper::GetNumberOfAxes()
 {
-    return numberOfAxes;
+    return opti.GetMotorCount();
 }
 
 bool DragonframeOptiWrapper::GetIsMotorMoving(int motorIndex)
 {
-    return opti.IsMoving();
+    return opti.IsMoving(ToOptiIndex(motorIndex));
 }
 
 int DragonframeOptiWrapper::GetCurrentStep(int motorIndex)
@@ -72,7 +72,7 @@ void DragonframeOptiWrapper::StopMotor(int motorIndex)
 
 void DragonframeOptiWrapper::StopAllMotors()
 {
-    opti.StopMoving();
+    opti.StopMovingAll();
 }
 
 void DragonframeOptiWrapper::SetJogSpeedForMotor(int motorIndex, int stepsPerSecond)
