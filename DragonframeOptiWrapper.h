@@ -40,7 +40,7 @@ private:
     const int majorVersion = 1;
     const int minorVersion = 3;
     const int fixVersion = 0;
-    const int inchingSpeed = 10;
+    const int inchingSpeed = 2000;
     const int standardSpeed = 20000;
 
     std::vector<int> jogSpeeds;

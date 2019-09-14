@@ -1,8 +1,5 @@
 #include <Arduino.h>
 #include <Opti200.h>
-#include <DelayedTaskManager.h>
-#include <DelayedMemberTask.h>
-#include <MemberBluetoothMessageHandler.h>
 #include <DragonframeMotionController.h>
 #include "DragonframeOptiWrapper.h"
 
@@ -19,5 +16,6 @@ void setup()
 void loop()
 {
 	opti.Update();
+	dragonframeMotionController.Update();
 }
 

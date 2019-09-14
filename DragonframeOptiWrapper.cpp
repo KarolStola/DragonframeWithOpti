@@ -12,6 +12,7 @@ DragonframeOptiWrapper::DragonframeOptiWrapper(Opti & opti)
 
 void DragonframeOptiWrapper::BindAsMessageHandler(class DragonframeMotionController & motionController)
 {
+    opti.SetBluetoothMessageDelimiter(motionController.GetIncomingMessageDelimiter());
     opti.AddBluetoothMessageHandler(new MemberBluetoothMessageHandler<DragonframeMotionController>(motionController, &DragonframeMotionController::ParseInput));
 }
 
