@@ -2,7 +2,10 @@
 Arduino library aiming at repurposing the OPTI camera slider family for the Dragonframe stop motion animation software.
 
 More on OPTI sliders: http://opti.net.pl \
-More on Dragonframe: https://www.dragonframe.com  
+More on Dragonframe: https://www.dragonframe.com
+
+## Important notice
+Please note that the following implementation was made for my own usage and represents the subset of functionalities I needed. If you find it lacking, feel free to submit a merge or feature request.
 
 ## Instalation
 1. Follow the instructions for installing Arduino IDE and ESP-32 board core:\
