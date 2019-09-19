@@ -19,7 +19,7 @@ https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_m
     * https://github.com/KarolStola/Opti
     * https://github.com/KarolStola/DragonframeMotionController
 
-4. Clone this project repository and open it in Arduino Studio
+4. Clone this project repository and open it in Arduino IDE
 
 5. Under the `Tools` dropdown, setup the following:\
 ![settings](ReadmeImages/settings.png)
