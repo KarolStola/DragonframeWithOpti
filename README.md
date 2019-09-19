@@ -9,13 +9,13 @@ Please note that the following implementation was made for my own usage and repr
 
 ## Instalation
 1. Follow the instructions for installing Arduino IDE and ESP-32 board core:\
-https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_manager.md \
+https://github.com/espressif/arduino-esp32/blob/master/docs/arduino-ide/boards_manager.md 
 > Note: There have been problems reported about uploading at higher speeds. You can use them if it works for you.
 
 2. Install required libraries in `Sketch > Include Library > Manage Libraries...`:
     *  TMC2208Stepper
 
-3. Install the prerequisite libraries\
+3. Install the prerequisite libraries
     * https://github.com/KarolStola/Opti
     * https://github.com/KarolStola/DragonframeMotionController
 
